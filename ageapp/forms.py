@@ -1,6 +1,15 @@
 from django import forms
 from .models import UserProfile
 from .models import UploadedImage
+from django.contrib.auth.forms import AuthenticationForm
+
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Enter Username', 'class': 'form-control'})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Enter Password', 'class': 'form-control'})
+    )
 
 class ImageUploadForm(forms.ModelForm):
     birthdate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))

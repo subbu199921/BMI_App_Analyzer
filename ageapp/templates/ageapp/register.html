@@ -137,19 +137,20 @@
             {% csrf_token %}
 
             <div class="input-group">
-                <i class="fas fa-user">username</i>
-                {{ form.username }}
-            </div>
+    <i class="fas fa-user"></i>
+    <input type="text" name="username" placeholder="Enter Username" required id="username">
+</div>
 
-            <div class="input-group">
-                <i class="fas fa-lock">Password</i>
-                {{ form.password1 }}
-            </div>
+<div class="input-group">
+    <i class="fas fa-lock"></i>
+    <input type="password" name="password1" placeholder="Enter Password" required id="password1">
+</div>
 
-            <div class="input-group">
-                <i class="fas fa-lock">Password</i>
-                {{ form.password2 }}
-            </div>
+<div class="input-group">
+    <i class="fas fa-lock"></i>
+    <input type="password" name="password2" placeholder="Confirm Password" required id="password2">
+</div>
+
 
             <button type="submit"><i class="fas fa-user-plus"></i> Register</button>
         </form>

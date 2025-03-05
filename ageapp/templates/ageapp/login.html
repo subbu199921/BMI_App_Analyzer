@@ -136,15 +136,17 @@
         <form method="post">
             {% csrf_token %}
 
-            <div class="input-group">
-                <i class="fas fa-user">username</i>
-                {{ form.username }}
-            </div>
+           <div class="input-group">
+    <label for="{{ form.username.id_for_label }}">Enter Username</label>
+    <i class="fas fa-user"></i>
+    {{ form.username }}
+</div>
 
-            <div class="input-group">
-                <i class="fas fa-lock">Password</i>
-                {{ form.password }}
-            </div>
+<div class="input-group">
+    <label for="{{ form.password.id_for_label }}">Enter Password</label>
+    <i class="fas fa-lock"></i>
+    {{ form.password }}
+</div>
 
             <button type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
         </form>
