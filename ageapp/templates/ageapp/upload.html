@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Image, Calculate Age & BMI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin-top: 50px;
+            animation: fadeIn 1s ease-in-out;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h2, h3 {
+            font-weight: bold;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        form:hover {
+            transform: scale(1.03);
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        button {
+            background-color: #ffcc00;
+            color: black;
+            padding: 12px 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s ease-in-out;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #ff9900;
+            transform: scale(1.1);
+        }
+
+        .logout-container {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        .logout-container button {
+            background: transparent;
+            border: 2px solid yellow;
+            color: yellow;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .logout-container button:hover {
+            background: yellow;
+            color: black;
+        }
+
+        .icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 🔐 Secure Logout Button for Logged-in Users -->
+    <div class="logout-container">
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2><i class="fas fa-cloud-upload-alt"></i> Upload Image & Enter Details</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit"><i class="fas fa-paper-plane"></i> Submit</button>
+        </form>
+
+        {% if age is not None %}
+            <h3><i class="fas fa-user"></i> Age: {{ age }} years</h3>
+            <h3><i class="fas fa-weight"></i> BMI: {{ bmi }}</h3>
+            <h3><i class="fas fa-chart-line"></i> Category: {{ bmi_category }}</h3>
+
+            <h3><i class="fas fa-chart-pie"></i> BMI Graph:</h3>
+            {% if graph_url %}
+                <img src="{{ graph_url }}" alt="BMI Graph">
+            {% endif %}
+        {% endif %}
+    </div>
+
+</body>
+</html>
