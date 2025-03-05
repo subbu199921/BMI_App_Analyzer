@@ -137,13 +137,13 @@
             {% csrf_token %}
 
            <div class="input-group">
-    <label for="{{ form.username.id_for_label }}">Enter Username</label>
+    <label for="{{ form.username.id_for_label }}"></label>
     <i class="fas fa-user"></i>
     {{ form.username }}
 </div>
 
 <div class="input-group">
-    <label for="{{ form.password.id_for_label }}">Enter Password</label>
+    <label for="{{ form.password.id_for_label }}"></label>
     <i class="fas fa-lock"></i>
     {{ form.password }}
 </div>
